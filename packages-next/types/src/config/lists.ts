@@ -1,3 +1,4 @@
+import type { CacheHint } from 'apollo-cache-control';
 import { AdminMetaRootVal } from '../admin-meta';
 import type { BaseGeneratedListTypes, MaybePromise, JSONValue } from '../utils';
 import type { ListHooks } from './hooks';
@@ -194,6 +195,11 @@ export type FieldConfig<TGeneratedListTypes extends BaseGeneratedListTypes> = {
       fieldMode?: MaybeItemFunction<'edit' | 'read' | 'hidden'>;
     };
   };
+  graphql?: {
+    cacheHint?:
+      | ((args: { results: any[]; operationName: string; meta: boolean }) => CacheHint)
+      | CacheHint;
+  };
 };
 
 export type MaybeSessionFunction<T extends string | boolean> =
@@ -209,7 +215,7 @@ export type MaybeItemFunction<T> =
 
 export type ListGraphQLConfig = {
   // was previously top-level cacheHint
-  // cacheHint?: CacheHint;
+  cacheHint?: ((args: any) => CacheHint) | CacheHint;
   /**
    * The description added to the GraphQL schema
    * @default listConfig.description
@@ -232,5 +238,3 @@ export type ListDBConfig = {
    */
   searchField?: string;
 };
-
-// export type CacheHint = { scope: 'PRIVATE' | 'PUBLIC'; maxAge: number };

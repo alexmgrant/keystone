@@ -1,3 +1,4 @@
+import type { CacheHint } from 'apollo-cache-control';
 import type { KeystoneContext } from './context';
 import type { BaseGeneratedListTypes, GqlNames } from './utils';
 
@@ -16,6 +17,7 @@ export type BaseKeystone = {
       itemQueryName?: string;
       hooks?: Record<string, any>;
       adapterConfig?: { searchField?: string };
+      cacheHint?: ((args: any) => CacheHint) | CacheHint;
     }
   ) => BaseKeystoneList;
   connect: (args?: any) => Promise<void>;

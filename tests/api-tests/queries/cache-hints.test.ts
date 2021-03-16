@@ -22,24 +22,20 @@ function setupKeystone(provider: ProviderName) {
             author: relationship({ ref: 'User.posts', many: true }),
           },
           graphql: {
-            // @ts-ignore
             cacheHint: { scope: CacheScope.Public, maxAge: 100 },
           },
         }),
         User: list({
           fields: {
             name: text({
-              // @ts-ignore
               graphql: { cacheHint: { maxAge: 80 } },
             }),
             favNumber: integer({
-              // @ts-ignore
               graphql: { cacheHint: { maxAge: 10, scope: CacheScope.Private } },
             }),
             posts: relationship({ ref: 'Post.author', many: true }),
           },
           graphql: {
-            // @ts-ignore
             cacheHint: ({ results, operationName, meta }) => {
               if (meta) {
                 return { scope: CacheScope.Public, maxAge: 90 };
@@ -72,7 +68,6 @@ function setupKeystone(provider: ProviderName) {
         `,
         resolvers: {
           Query: {
-            // @ts-ignore
             double: (root, { x }, context, info) => {
               info.cacheControl.setCacheHint({ scope: CacheScope.Public, maxAge: 100 });
               return { original: x, double: 2.0 * x };
