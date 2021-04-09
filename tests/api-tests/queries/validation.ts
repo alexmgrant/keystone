@@ -1,30 +1,50 @@
-const { visit, Kind } = require('graphql');
+import { visit, Kind, ValidationContext, ASTNode, GraphQLError } from 'graphql';
 
-const definitionLimit = maxDefinitions => validationContext => {
+type Fragment = { name: string; atDepth?: number };
+
+type Definition = {
+  node: ASTNode;
+  fragments: Fragment[];
+  fieldDepth: number;
+  numFields: number;
+  totalDepth?: number | null;
+  totalNumFields?: number | null;
+};
+
+export const definitionLimit = (maxDefinitions: number) => (
+  validationContext: ValidationContext
+) => {
   const doc = validationContext.getDocument();
   if (doc.definitions.length > maxDefinitions) {
     validationContext.reportError(
-      new Error(`Request contains ${doc.definitions.length} definitions (max: ${maxDefinitions})`),
-      doc
+      new GraphQLError(
+        `Request contains ${doc.definitions.length} definitions (max: ${maxDefinitions})`
+      )
     );
   }
   return validationContext;
 };
 
-const nodeName = node => (node.name && node.name.value) || 'query';
+// @ts-ignore
+const nodeName = (node: ASTNode) => (node.name && node.name.value) || 'query';
 
 // Map fragments referenced in a definition through a function
 // Mostly here for consistent handling of invalid fragment references
-const mapFragments = (validationContext, defTable, def, f) => {
+const mapFragments = (
+  validationContext: ValidationContext,
+  defTable: Record<string, Definition>,
+  def: Definition,
+  f: (fragment: Fragment) => number | null
+) => {
   return def.fragments
     .map(fragment => {
       if (!defTable[fragment.name]) {
-        validationContext.reportError(new Error(`Undefined fragment "${fragment.name}"`), def.node);
+        validationContext.reportError(new GraphQLError(`Undefined fragment "${fragment.name}"`));
         return null;
       }
       return f(fragment);
     })
-    .filter(x => x !== null);
+    .filter(x => x !== null) as number[];
 };
 
 // Some of these validators are a bit more complicated than they'd otherwise need to be
@@ -33,14 +53,15 @@ const mapFragments = (validationContext, defTable, def, f) => {
 // and tracking which definitions contain which fragment spreads.  Then a second pass
 // calculates the required value.
 
-const fieldLimit = maxFields => validationContext => {
+export const fieldLimit = (maxFields: number) => (validationContext: ValidationContext) => {
   // The total field count includes fields that would be there after expanding fragments
   const doc = validationContext.getDocument();
-  const defs = {};
-  const newDef = (name, node) => {
+  const defs = {} as Record<string, Definition>;
+  const newDef = (name: string, node: ASTNode): Definition => {
     return (defs[name] = {
       node,
       numFields: 0,
+      fieldDepth: 0,
       fragments: [],
       totalNumFields: undefined, // Calculated in second pass
     });
@@ -67,7 +88,7 @@ const fieldLimit = maxFields => validationContext => {
     },
   });
 
-  const getTotalNumFields = def => {
+  const getTotalNumFields = (def: Definition): number => {
     // Memoise results guard against infinite loops using null as sentinel
     if (def.totalNumFields === null) {
       // Mutually included fragments have infinite count
@@ -81,11 +102,11 @@ const fieldLimit = maxFields => validationContext => {
     const fragmentNumFields = mapFragments(validationContext, defs, def, ({ name }) =>
       getTotalNumFields(defs[name])
     );
-    def.totalNumFields = fragmentNumFields.reduce((a, b) => a + b, def.numFields);
+    def.totalNumFields = fragmentNumFields.reduce((a, b) => a + b, def.numFields || 0);
     return def.totalNumFields;
   };
 
-  const sumNumFields = defList => {
+  const sumNumFields = (defList: Definition[]) => {
     return defList.map(getTotalNumFields).reduce((a, b) => a + b, 0);
   };
 
@@ -101,19 +122,19 @@ const fieldLimit = maxFields => validationContext => {
 
   if (requestNumFields > maxFields) {
     validationContext.reportError(
-      new Error(`Request contains ${requestNumFields} fields (max: ${maxFields})`),
-      doc
+      new GraphQLError(`Request contains ${requestNumFields} fields (max: ${maxFields})`)
     );
   }
   return validationContext;
 };
 
-const depthLimit = maxDepth => validationContext => {
+export const depthLimit = (maxDepth: number) => (validationContext: ValidationContext) => {
   const doc = validationContext.getDocument();
-  const defs = {};
-  const newDef = (name, node) => {
+  const defs = {} as Record<string, Definition>;
+  const newDef = (name: string, node: ASTNode): Definition => {
     return (defs[name] = {
       node,
+      numFields: 0,
       fieldDepth: 0,
       fragments: [],
       totalDepth: undefined, // Calculated in second pass
@@ -152,7 +173,7 @@ const depthLimit = maxDepth => validationContext => {
   });
 
   // Total depth from explicit fields and from fragment interpolations
-  const getTotalDepth = def => {
+  const getTotalDepth = (def: Definition) => {
     // Memoise results guard against infinite loops using null as sentinel
     if (def.totalDepth === null) {
       // Mutually included fragments have infinite depth
@@ -167,9 +188,10 @@ const depthLimit = maxDepth => validationContext => {
       validationContext,
       defs,
       def,
-      ({ name, atDepth }) => atDepth + getTotalDepth(defs[name])
+      ({ name, atDepth }: Definition['fragments'][number]) =>
+        (atDepth || 0) + getTotalDepth(defs[name])
     );
-    def.totalDepth = Math.max(def.fieldDepth, Math.max.apply(null, fragmentDepths));
+    def.totalDepth = Math.max(def.fieldDepth || 0, Math.max.apply(null, fragmentDepths));
     return def.totalDepth;
   };
 
@@ -177,16 +199,9 @@ const depthLimit = maxDepth => validationContext => {
     const totalDepth = getTotalDepth(def);
     if (totalDepth > maxDepth) {
       validationContext.reportError(
-        new Error(`Operation has depth ${totalDepth} (max: ${maxDepth})`),
-        def.node
+        new GraphQLError(`Operation has depth ${totalDepth} (max: ${maxDepth})`)
       );
     }
   }
   return validationContext;
-};
-
-module.exports = {
-  depthLimit,
-  fieldLimit,
-  definitionLimit,
 };
