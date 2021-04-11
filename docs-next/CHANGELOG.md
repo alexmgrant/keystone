@@ -1,5 +1,22 @@
 # @keystone-next/website
 
+## 2.0.0
+
+### Major Changes
+
+- [#5397](https://github.com/keystonejs/keystone/pull/5397) [`a5627304b`](https://github.com/keystonejs/keystone/commit/a5627304b7921a0f1484d6d08330115d0edbb45b) Thanks [@bladey](https://github.com/bladey)! - Updated Node engine version to 12.x due to 10.x reaching EOL on 2021-04-30.
+
+### Patch Changes
+
+- Updated dependencies [[`a5627304b`](https://github.com/keystonejs/keystone/commit/a5627304b7921a0f1484d6d08330115d0edbb45b), [`43a0f5429`](https://github.com/keystonejs/keystone/commit/43a0f5429028eb9df53e93f19f2dd6fc328cde32), [`d7e8cad4f`](https://github.com/keystonejs/keystone/commit/d7e8cad4fca5d8ffefa235c2ff30ec8e2e0d6276), [`8eebf9195`](https://github.com/keystonejs/keystone/commit/8eebf9195ac625f6642c76ea145642f075e725fe)]:
+  - @keystone-ui/button@4.0.0
+  - @keystone-ui/fields@3.0.0
+  - @keystone-ui/icons@3.0.0
+  - @keystone-ui/notice@3.0.0
+  - @keystone-ui/toast@3.0.0
+  - @keystone-ui/tooltip@3.0.0
+  - @keystone-next/fields-document@4.0.1
+
 ## 1.3.0
 
 ### Minor Changes

@@ -1,5 +1,27 @@
 # @keystone-next/fields-document
 
+## 4.0.1
+
+### Patch Changes
+
+- [#5372](https://github.com/keystonejs/keystone/pull/5372) [`43a0f5429`](https://github.com/keystonejs/keystone/commit/43a0f5429028eb9df53e93f19f2dd6fc328cde32) Thanks [@gwyneplaine](https://github.com/gwyneplaine)! - Fixed heading styles to be more differentiatable from normal text.
+
+* [#5400](https://github.com/keystonejs/keystone/pull/5400) [`d7e8cad4f`](https://github.com/keystonejs/keystone/commit/d7e8cad4fca5d8ffefa235c2ff30ec8e2e0d6276) Thanks [@timleslie](https://github.com/timleslie)! - Moved the `Implementation` base class from the `fields-legacy` package into the `fields` package.
+
+- [#5371](https://github.com/keystonejs/keystone/pull/5371) [`8eebf9195`](https://github.com/keystonejs/keystone/commit/8eebf9195ac625f6642c76ea145642f075e725fe) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Fixed undo on shortcuts like `->` to `→` undoing the whole shortcut rather than just the replacement
+
+- Updated dependencies [[`637ae05d3`](https://github.com/keystonejs/keystone/commit/637ae05d3f8a138902c2d03c5b342cb93c440767), [`d0adec53f`](https://github.com/keystonejs/keystone/commit/d0adec53ff20c2246dfe955b449b7c6e1afe96fb), [`f059f6349`](https://github.com/keystonejs/keystone/commit/f059f6349bee3dce8bbf4a0584b235e97872851c), [`8ab2c9bb6`](https://github.com/keystonejs/keystone/commit/8ab2c9bb6633c2f85844e658f534582c30a39a57), [`637ae05d3`](https://github.com/keystonejs/keystone/commit/637ae05d3f8a138902c2d03c5b342cb93c440767), [`a5627304b`](https://github.com/keystonejs/keystone/commit/a5627304b7921a0f1484d6d08330115d0edbb45b), [`d7e8cad4f`](https://github.com/keystonejs/keystone/commit/d7e8cad4fca5d8ffefa235c2ff30ec8e2e0d6276), [`89b869e8d`](https://github.com/keystonejs/keystone/commit/89b869e8d492151449f2146108767a7e5e5ecdfa), [`58a793988`](https://github.com/keystonejs/keystone/commit/58a7939888ec84d0f089d77ca1ce9d94ef0d9a85)]:
+  - @keystone-next/fields@7.0.0
+  - @keystone-next/adapter-prisma-legacy@6.0.0
+  - @keystone-ui/button@4.0.0
+  - @keystone-ui/fields@3.0.0
+  - @keystone-ui/icons@3.0.0
+  - @keystone-ui/popover@3.0.0
+  - @keystone-ui/tooltip@3.0.0
+  - @keystone-next/admin-ui@14.0.0
+  - @keystone-next/admin-ui-utils@4.0.0
+  - @keystone-next/types@17.0.0
+
 ## 4.0.0
 
 ### Major Changes

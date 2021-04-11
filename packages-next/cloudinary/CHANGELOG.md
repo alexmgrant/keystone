@@ -1,5 +1,32 @@
 # @keystone-next/cloudinary
 
+## 4.0.0
+
+### Major Changes
+
+- [#5397](https://github.com/keystonejs/keystone/pull/5397) [`a5627304b`](https://github.com/keystonejs/keystone/commit/a5627304b7921a0f1484d6d08330115d0edbb45b) Thanks [@bladey](https://github.com/bladey)! - Updated Node engine version to 12.x due to 10.x reaching EOL on 2021-04-30.
+
+### Patch Changes
+
+- [#5394](https://github.com/keystonejs/keystone/pull/5394) [`22b16a998`](https://github.com/keystonejs/keystone/commit/22b16a998082c45a13c09966c1afccc4faf55372) Thanks [@timleslie](https://github.com/timleslie)! - Removed the dependency on the legacy `CloudinaryImage` field implementation.
+
+* [#5391](https://github.com/keystonejs/keystone/pull/5391) [`c142dd924`](https://github.com/keystonejs/keystone/commit/c142dd9243c966026b7f3f49983bde7283e1bc72) Thanks [@timleslie](https://github.com/timleslie)! - Refactored the core implementation to not depend on the `File` type.
+
+- [#5395](https://github.com/keystonejs/keystone/pull/5395) [`94e6b19d6`](https://github.com/keystonejs/keystone/commit/94e6b19d6e184136a55541079587576694d51e99) Thanks [@timleslie](https://github.com/timleslie)! - Moved the implementation of the `CloudinaryAdapter` into this package.
+
+* [#5386](https://github.com/keystonejs/keystone/pull/5386) [`952db7148`](https://github.com/keystonejs/keystone/commit/952db7148ba9fda6d299e05c86741476e3b60af7) Thanks [@timleslie](https://github.com/timleslie)! - Fixed the type resolver when using the `sqlite` provider.
+
+- [#5400](https://github.com/keystonejs/keystone/pull/5400) [`d7e8cad4f`](https://github.com/keystonejs/keystone/commit/d7e8cad4fca5d8ffefa235c2ff30ec8e2e0d6276) Thanks [@timleslie](https://github.com/timleslie)! - Moved the `Implementation` base class from the `fields-legacy` package into the `fields` package.
+
+- Updated dependencies [[`637ae05d3`](https://github.com/keystonejs/keystone/commit/637ae05d3f8a138902c2d03c5b342cb93c440767), [`d0adec53f`](https://github.com/keystonejs/keystone/commit/d0adec53ff20c2246dfe955b449b7c6e1afe96fb), [`f059f6349`](https://github.com/keystonejs/keystone/commit/f059f6349bee3dce8bbf4a0584b235e97872851c), [`8ab2c9bb6`](https://github.com/keystonejs/keystone/commit/8ab2c9bb6633c2f85844e658f534582c30a39a57), [`637ae05d3`](https://github.com/keystonejs/keystone/commit/637ae05d3f8a138902c2d03c5b342cb93c440767), [`a5627304b`](https://github.com/keystonejs/keystone/commit/a5627304b7921a0f1484d6d08330115d0edbb45b), [`d7e8cad4f`](https://github.com/keystonejs/keystone/commit/d7e8cad4fca5d8ffefa235c2ff30ec8e2e0d6276), [`89b869e8d`](https://github.com/keystonejs/keystone/commit/89b869e8d492151449f2146108767a7e5e5ecdfa), [`58a793988`](https://github.com/keystonejs/keystone/commit/58a7939888ec84d0f089d77ca1ce9d94ef0d9a85)]:
+  - @keystone-next/fields@7.0.0
+  - @keystone-next/adapter-prisma-legacy@6.0.0
+  - @keystone-ui/button@4.0.0
+  - @keystone-ui/fields@3.0.0
+  - @keystone-ui/pill@3.0.0
+  - @keystone-next/admin-ui@14.0.0
+  - @keystone-next/types@17.0.0
+
 ## 3.0.6
 
 ### Patch Changes

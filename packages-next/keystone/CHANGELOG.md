@@ -1,5 +1,35 @@
 # @keystone-next/keystone
 
+## 16.0.0
+
+### Major Changes
+
+- [#5404](https://github.com/keystonejs/keystone/pull/5404) [`d9e1acb30`](https://github.com/keystonejs/keystone/commit/d9e1acb30e384ce88e6681ba9d299d917dea97d9) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Started formatting GraphQL schema written to `schema.graphql` with Prettier
+
+* [#5397](https://github.com/keystonejs/keystone/pull/5397) [`a5627304b`](https://github.com/keystonejs/keystone/commit/a5627304b7921a0f1484d6d08330115d0edbb45b) Thanks [@bladey](https://github.com/bladey)! - Updated Node engine version to 12.x due to 10.x reaching EOL on 2021-04-30.
+
+### Minor Changes
+
+- [#5325](https://github.com/keystonejs/keystone/pull/5325) [`3d3fb860f`](https://github.com/keystonejs/keystone/commit/3d3fb860faa303cbfe75eeb0855a8a575113320c) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Updated to Prisma 2.20
+
+### Patch Changes
+
+- [#5402](https://github.com/keystonejs/keystone/pull/5402) [`588f31ddc`](https://github.com/keystonejs/keystone/commit/588f31ddce15ab752a987a1dc1429fa1d6f03d7c) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Refactored to make testing the cli easier
+
+* [#5407](https://github.com/keystonejs/keystone/pull/5407) [`76692d266`](https://github.com/keystonejs/keystone/commit/76692d26642eabf23d2ef038dec35d35d4e35d31) Thanks [@timleslie](https://github.com/timleslie)! - Fixed a bug where `context.prisma` was `undefined` in the `onConnect()` function.
+
+- [#5390](https://github.com/keystonejs/keystone/pull/5390) [`ad1776b74`](https://github.com/keystonejs/keystone/commit/ad1776b7418b7a0d1c8e5def8d82051752c01aa9) Thanks [@timleslie](https://github.com/timleslie)! - Silenced logging when running CI tests.
+
+* [#5393](https://github.com/keystonejs/keystone/pull/5393) [`a73aea7d7`](https://github.com/keystonejs/keystone/commit/a73aea7d78d4c520856f06f9d1b79efe4b36993b) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Fixed reading config file to be local to the passed directory instead of `process.cwd()`
+
+* Updated dependencies [[`637ae05d3`](https://github.com/keystonejs/keystone/commit/637ae05d3f8a138902c2d03c5b342cb93c440767), [`d0adec53f`](https://github.com/keystonejs/keystone/commit/d0adec53ff20c2246dfe955b449b7c6e1afe96fb), [`f059f6349`](https://github.com/keystonejs/keystone/commit/f059f6349bee3dce8bbf4a0584b235e97872851c), [`8ab2c9bb6`](https://github.com/keystonejs/keystone/commit/8ab2c9bb6633c2f85844e658f534582c30a39a57), [`637ae05d3`](https://github.com/keystonejs/keystone/commit/637ae05d3f8a138902c2d03c5b342cb93c440767), [`a5627304b`](https://github.com/keystonejs/keystone/commit/a5627304b7921a0f1484d6d08330115d0edbb45b), [`d0adec53f`](https://github.com/keystonejs/keystone/commit/d0adec53ff20c2246dfe955b449b7c6e1afe96fb), [`d7e8cad4f`](https://github.com/keystonejs/keystone/commit/d7e8cad4fca5d8ffefa235c2ff30ec8e2e0d6276), [`89b869e8d`](https://github.com/keystonejs/keystone/commit/89b869e8d492151449f2146108767a7e5e5ecdfa), [`58a793988`](https://github.com/keystonejs/keystone/commit/58a7939888ec84d0f089d77ca1ce9d94ef0d9a85)]:
+  - @keystone-next/fields@7.0.0
+  - @keystone-next/adapter-prisma-legacy@6.0.0
+  - @keystone-next/admin-ui@14.0.0
+  - @keystone-next/types@17.0.0
+  - @keystone-next/keystone-legacy@24.0.0
+  - @keystone-next/server-side-graphql-client-legacy@4.0.0
+
 ## 15.0.0
 
 ### Major Changes

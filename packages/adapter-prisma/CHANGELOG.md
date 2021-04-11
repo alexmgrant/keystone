@@ -1,5 +1,25 @@
 # @keystonejs/adapter-prisma
 
+## 6.0.0
+
+### Major Changes
+
+- [#5397](https://github.com/keystonejs/keystone/pull/5397) [`a5627304b`](https://github.com/keystonejs/keystone/commit/a5627304b7921a0f1484d6d08330115d0edbb45b) Thanks [@bladey](https://github.com/bladey)! - Updated Node engine version to 12.x due to 10.x reaching EOL on 2021-04-30.
+
+### Minor Changes
+
+- [#5284](https://github.com/keystonejs/keystone/pull/5284) [`8ab2c9bb6`](https://github.com/keystonejs/keystone/commit/8ab2c9bb6633c2f85844e658f534582c30a39a57) Thanks [@timleslie](https://github.com/timleslie)! - Converted package to TypeScript.
+
+* [#5406](https://github.com/keystonejs/keystone/pull/5406) [`637ae05d3`](https://github.com/keystonejs/keystone/commit/637ae05d3f8a138902c2d03c5b342cb93c440767) Thanks [@timleslie](https://github.com/timleslie)! - Added a `.containsConditions()` method to include string filters just for the `contains` and `not_contains` options.
+
+### Patch Changes
+
+- [#5406](https://github.com/keystonejs/keystone/pull/5406) [`637ae05d3`](https://github.com/keystonejs/keystone/commit/637ae05d3f8a138902c2d03c5b342cb93c440767) Thanks [@timleslie](https://github.com/timleslie)! - Fixed a bug which added unsupported string filter options to the GraphQL API for the SQLite provider.
+  Added a `.containsInputFields()` method to include string filters just for the `contains` and `not_contains` options.
+- Updated dependencies [[`d0adec53f`](https://github.com/keystonejs/keystone/commit/d0adec53ff20c2246dfe955b449b7c6e1afe96fb), [`a5627304b`](https://github.com/keystonejs/keystone/commit/a5627304b7921a0f1484d6d08330115d0edbb45b), [`d0adec53f`](https://github.com/keystonejs/keystone/commit/d0adec53ff20c2246dfe955b449b7c6e1afe96fb), [`d7e8cad4f`](https://github.com/keystonejs/keystone/commit/d7e8cad4fca5d8ffefa235c2ff30ec8e2e0d6276)]:
+  - @keystone-next/utils-legacy@9.0.0
+  - @keystone-next/keystone-legacy@24.0.0
+
 ## 5.0.0
 
 ### Major Changes
